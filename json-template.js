@@ -24,8 +24,6 @@ var repr = repr || function() {};
 
 // The "module" exported by this script is called "jsontemplate":
 
-var jsontemplate = function() {
-
 function Exception(name, message) {
     this.name = name;
     this.message = message;
@@ -174,7 +172,7 @@ var PrefixRegistry = function(functions) {
             args = user_str.split(splitchar).slice(1);
           }
           return [func, args];
-        } 
+        }
       }
       return [null, null];  // No formatter
     }
@@ -280,7 +278,7 @@ function Context(context, undefined_str) {
         return stack[stack.length-1].context;
       }
       var parts = name.split('.'),
-          value = this._LookUpStack(parts[0]);  // First lookup is special 
+          value = this._LookUpStack(parts[0]);  // First lookup is special
       if (value === undefined) {
         return this._Undefined();
       }
@@ -461,7 +459,7 @@ function _DoRepeatedSection(args, context, callback) {
     // Execute the statements in the block for every item in the list.
     // Execute the alternate block on every iteration except the last.  Each
     // item could be an atom (string, integer, etc.) or a dictionary.
-    
+
     var last_index = items.length - 1;
     var statements = block.Statements();
     var alt_statements = block.Statements('alternate');
@@ -820,17 +818,16 @@ function expand(template_str, data, options) {
 // We just export one name for now, the Template "class".
 // We need HtmlEscape in the browser tests, so might as well export it.
 
-return {
-    Template: Template, HtmlEscape: HtmlEscape,
-    FunctionRegistry: FunctionRegistry, SimpleRegistry: SimpleRegistry,
-    CallableRegistry: CallableRegistry, ChainedRegistry: ChainedRegistry,
-    fromString: fromString, expand: expand, Context: Context,
-    // Private but exposed for testing
-    _Section: _Section
-    };
-
-}();
-
-// Make it a CommonJS module
-for (var key in jsontemplate) exports[key] = jsontemplate[key];
-
+module.exports = {
+  Template: Template,
+  HtmlEscape: HtmlEscape,
+  FunctionRegistry: FunctionRegistry,
+  SimpleRegistry: SimpleRegistry,
+  CallableRegistry: CallableRegistry,
+  ChainedRegistry: ChainedRegistry,
+  fromString: fromString,
+  expand: expand,
+  Context: Context,
+  // Private but exposed for testing
+  _Section: _Section
+};
