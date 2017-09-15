@@ -828,6 +828,8 @@ module.exports = {
   fromString: fromString,
   expand: expand,
   Context: Context,
+  DEFAULT_FORMATTERS : DEFAULT_FORMATTERS,
+  DEFAULT_PREDICATES : DEFAULT_PREDICATES,
   // Private but exposed for testing
   _Section: _Section
 };
