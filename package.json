@@ -1,6 +1,6 @@
 {
   "name": "json-template-fixed",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Minimal but powerful templating language implemented in multiple languages.",
   "keywords": [
     "template",
