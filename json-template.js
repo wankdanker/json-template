@@ -814,6 +814,19 @@ function expand(template_str, data, options) {
   return t.expand(data);
 }
 
+// Public function that returns a function that may be called instead of needing
+// to call t.expand. This allows to follow the more common pattern in template
+// engines...
+//
+// var fn = engine.compile('string', {});
+// var result = fn({});
+function compile(template_str, options) {
+  var t = Template(template_str, options);
+
+  return function (data) {
+    return t.expand(data);
+  }
+}
 
 // We just export one name for now, the Template "class".
 // We need HtmlEscape in the browser tests, so might as well export it.
@@ -827,6 +840,7 @@ module.exports = {
   ChainedRegistry: ChainedRegistry,
   fromString: fromString,
   expand: expand,
+  compile : compile,
   Context: Context,
   DEFAULT_FORMATTERS : DEFAULT_FORMATTERS,
   DEFAULT_PREDICATES : DEFAULT_PREDICATES,
